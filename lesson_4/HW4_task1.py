@@ -9,14 +9,19 @@
 from sys import argv
 
 
+def hello(name):
+    print(f"Hello, {name}")
+
+
 def calculate():
     try:
-        user, rate, time, bonus = argv
+        file, rate, time, bonus = argv
         salary = int(rate) * float(time) + int(bonus)
-        print(f"{user}, Ваша зарплата >>> {salary} $")
+        print(f"Your salary >>> {salary} $")
     except ValueError:
         print("Invalid args")
         exit()
 
 
+hello("Worker!")
 calculate()
