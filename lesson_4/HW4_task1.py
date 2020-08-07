@@ -4,19 +4,24 @@
 час) + премия. Для выполнения расчета для конкретных значений необходимо запускать
 скрипт с параметрами.
 """
-# Привет. Запускаю данный скрипт с параметрами! Правая кнопка >>> edit HW4_task1 >>> parameters заполняю через пробел!
+# Привет. Запускаю данный скрипт с параметрами! Правая кнопка >>> edit {file_name} >>> parameters заполняю через пробел!
 
 from sys import argv
 
 
+def hello(name):
+    print(f"Hello, {name}")
+
+
 def calculate():
     try:
-        user, rate, time, bonus = argv
+        file, rate, time, bonus = argv
         salary = int(rate) * float(time) + int(bonus)
-        print(f"{user}, Ваша зарплата >>> {salary} $")
+        print(f"Your salary >>> {salary} $")
     except ValueError:
         print("Invalid args")
         exit()
 
 
+hello("Worker!")
 calculate()
