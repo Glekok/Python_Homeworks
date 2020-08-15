@@ -24,9 +24,9 @@ result = {}
 for key, value in lessons_dict.items():
     result[key] = sum(
         [
-            int(hours[:hours.index("(")])
+            int(hours.split("(")[0])
             for hours in value
-            if hours != "-"
+            if hours.split("(")[0].isdigit()
         ]
     )
 
