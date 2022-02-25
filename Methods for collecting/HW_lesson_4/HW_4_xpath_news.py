@@ -28,19 +28,12 @@ def add_news_to_db(data):
         with MongoClient(M_HOST, M_PORT) as client:
             db = client[M_DB]
             collection = db[M_DB_COLLECTION]
-            collection.insert_many(data)
-            """При условии, что какие-то новости уже в базе
+            # collection.insert_many(data)
+
+            """При условии, что какие-то новости уже в базе"""
             for elements in data:
-                new_link = str(elements["link"])
-                for element in collection.find():
-                    our_link = element["link"]
-                    if our_link != new_link:
-                        continue
-                    else:
-                        print("News already here!")
-                        break
-            collection.insert_one(elements)"""
-            pprint(data)
+                collection.update_one({"link": elements['link']}, {"$set": elements}, upsert=True)
+                pprint(elements)
     except TypeError as e:
         print(f"Что-то пошло не так >>> {e}")
 
